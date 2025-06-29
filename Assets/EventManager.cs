@@ -464,7 +464,12 @@ public class EventManager : MonoBehaviour
                 notiArr.Add(myInstance);
                 StartCoroutine(Remove_Noti(myInstance, 0));
                 TextMeshProUGUI txt = myInstance.transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
-                txt.text = name + "\n" + dose + " given";
+                if (lang == "en") {
+                    txt.text = name + "\n" + dose + " given";
+                }
+                else if (lang == "fr"){
+                    txt.text = name + "\n" + dose + " administré";
+                }
             } else if (type == 1 && notiCprPref != null) {
                 GameObject myInstance = Instantiate(notiCprPref, notiTransform);
 
@@ -1155,7 +1160,10 @@ public class EventManager : MonoBehaviour
                     GameObject bw = GameObject.Find("BodyWeight");
                     if (bw != null) {
                         TextMeshProUGUI txt = bw.GetComponent<TextMeshProUGUI>();
-                        txt.text = $" Body weight: {weight} kg";
+                        if (lang == "fr")
+                            txt.text = $" Poids corporel : {weight} kg";
+                        else
+                            txt.text = $" Body weight: {weight} kg";
                     }
                 });
             }
